@@ -28,5 +28,19 @@ class User
     end
   end
 
+  #get one (by id)
+  def self.find(id)
+    results = DB.exec("SELECT * FROM users WHERE id=#{id};")
+    result = results.first
+    return {
+      "id" => result["id"].to_i,
+      "username" => result["username"],
+      "password" => result["password"],
+      "address" => result["address"]
+    }
+  end
+
+
+
 
 end
