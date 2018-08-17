@@ -10,6 +10,7 @@
 # CREATE TABLE users (id SERIAL, username VARCHAR(16), password VARCHAR(16), address TEXT);
 # CREATE TABLE employees (id SERIAL, user_id INT);
 # CREATE TABLE services (id SERIAL, service_type VARCHAR(155), service_price DECIMAL, employee_id INT);
+# CREATE TABLE reviews (id SERIAL, user_id INT, employee_id INT, review TEXT, rating INT);
 
 
 # set up data
@@ -27,3 +28,6 @@
 #
 # INSERT INTO services (service_type, service_price, employee_id) VALUES ('Mow Lawn - 1/2Acre', 28.00, 2);
 # INSERT INTO services (service_type, service_price, employee_id) VALUES ('Mulch', 15.00, 2);
+
+
+# INSERT INTO reviews (user_id, employee_id, review, rating) VALUES (1, 2, 'They did such a great job!', 5);
