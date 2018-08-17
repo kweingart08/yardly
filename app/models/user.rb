@@ -40,6 +40,48 @@ class User
     }
   end
 
+  # create new user
+  def self.create(opts)
+    results = DB.exec(
+      <<-SQL
+        INSERT INTO users (username, password, address)
+        VALUES ('#{opts["username"]}', '#{opts["password"]}', '#{opts["address"]}')
+        RETURNING id, username, password, address;
+      SQL
+    )
+    result = results.first
+    return {
+      "id" => result["id"].to_i,
+      "username" => result["username"],
+      "password" => result["password"],
+      "address" => result["address"]
+    }
+  end
+
+  # delete one user by id
+  def self.delete(id)
+    results = DB.exec("DELETE FROM users WHERE id=#{id};")
+    return {"deleted" => true}
+  end
+
+  # update user information by id
+  def self.update(id, opts)
+    results = DB.exec(
+      <<-SQL
+        UPDATE users
+        SET username='#{opts["username"]}', password='#{opts["password"]}', address='#{opts["address"]}'
+        WHERE id = #{id}
+        RETURNING id, username, password, address;
+      SQL
+    )
+    result = results.first
+    return {
+      "id" => result["id"].to_i,
+      "username" => result["username"],
+      "password" => result["password"],
+      "address" => result["address"]
+    }
+  end
 
 
 
