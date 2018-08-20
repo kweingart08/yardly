@@ -29,5 +29,11 @@ Rails.application.routes.draw do
   delete '/reviews/:id', to: 'reviews#delete'
   put '/reviews/:id', to: 'reviews#update'
 
+  # ******* routes for jobs *******
+  get '/jobs', to: 'jobs#index'
+  get '/jobs/:id', to: 'jobs#show'
+  post '/jobs', to: 'jobs#create'
+  delete '/jobs/:id', to: 'jobs#delete'
+  put '/jobs/:id', to: 'jobs#update'
 
 end
