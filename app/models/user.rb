@@ -21,22 +21,38 @@ class User
       <<-SQL
       SELECT
         users.*,
+        jobs.id AS open_job_id,
+        jobs.services_id,
+        jobs.requested_user_id,
+        services.service_type,
+        services.service_price,
+        services.employee_id AS hired_employee_id,
+        employees.id AS hired_id,
+        employees.user_id AS hired_employee_user_id,
+        workers.id AS worker_id,
+        workers.username AS hired_employee_name,
         reviews.id AS review_id,
         reviews.user_id AS reviewer_id,
         reviews.employee_id AS reviewed_employee_id,
         reviews.review_notes,
         reviews.rating,
-        employees.id AS worker_id,
-        employees.user_id AS worker_user_id,
-        persons.username AS employees_name
+        reviewed_person_name.username AS reviewed_person_name
       FROM users
+      LEFT JOIN jobs
+        ON users.id = jobs.requested_user_id
+      LEFT JOIN services
+        ON jobs.services_id = services.id
+      LEFT JOIN employees
+        ON services.employee_id = employees.id
+      LEFT JOIN users AS workers
+        ON employees.user_id = workers.id
       LEFT JOIN reviews
         ON users.id = reviews.user_id
-      LEFT JOIN employees
-        ON reviews.employee_id = employees.id
-      LEFT JOIN users AS persons
-        ON employees.user_id = persons.id
-      ORDER BY users.id ASC
+      LEFT JOIN employees AS reviewed_employee
+        ON reviews.employee_id = reviewed_employee.id
+      LEFT JOIN users AS reviewed_person_name
+        ON reviewed_employee.user_id = reviewed_person_name.id
+      ORDER BY users.id ASC;
       SQL
     )
     users = []
@@ -49,17 +65,27 @@ class User
             "username" => result["username"],
             "password" => result["password"],
             "address" => result["address"],
+            "open_requests" => [],
             "reviews_written" => []
           }
         )
         last_user_id = result["id"]
+      end
+      if result["open_job_id"]
+        new_request = {
+          "job_id" => result["open_job_id"].to_i,
+          "service_type" => result["service_type"],
+          "service_price" => result["service_price"].to_f,
+          "workers_name" => result["hired_employee_name"]
+        }
+        users.last["open_requests"].push(new_request)
       end
       if result["review_id"]
         new_review = {
           "review_id" => result["review_id"].to_i,
           "reviewer_id" => result["reviewer_id"].to_i,
           "reviewed_employee_id" => result["reviewed_employee_id"].to_i,
-          "employees_name" => result["employees_name"],
+          "employees_name" => result["reviewed_person_name"],
           "review" => result["review_notes"],
           "review_rating" => result["rating"]
         }
