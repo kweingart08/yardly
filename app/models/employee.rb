@@ -17,11 +17,27 @@ class Employee
 
   # get all
   def self.all
-    results = DB.exec("SELECT * FROM employees;")
+    results = DB.exec(
+      <<-SQL
+        SELECT
+          employees.*,
+          users.id AS person_id,
+          users.username,
+          users.password,
+          users.address
+        FROM employees
+        LEFT JOIN users
+        ON employees.user_id = users.id
+        ORDER BY employees.id ASC
+      SQL
+    )
     return results.map do |result|
       {
-        "id" => result["id"].to_i,
-        "user_id" => result["user_id"].to_i
+        "employee_id" => result["id"].to_i,
+        "user_id" => result["person_id"].to_i,
+        "username" => result["username"],
+        "password" => result["password"],
+        "address" => result["address"]
       }
     end
   end
