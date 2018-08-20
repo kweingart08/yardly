@@ -101,25 +101,42 @@ class User
       <<-SQL
       SELECT
         users.*,
+        jobs.id AS open_job_id,
+        jobs.services_id,
+        jobs.requested_user_id,
+        services.service_type,
+        services.service_price,
+        services.employee_id AS hired_employee_id,
+        employees.id AS hired_id,
+        employees.user_id AS hired_employee_user_id,
+        workers.id AS worker_id,
+        workers.username AS hired_employee_name,
         reviews.id AS review_id,
         reviews.user_id AS reviewer_id,
         reviews.employee_id AS reviewed_employee_id,
         reviews.review_notes,
         reviews.rating,
-        employees.id AS worker_id,
-        employees.user_id AS worker_user_id,
-        persons.username AS employees_name
+        reviewed_person_name.username AS reviewed_person_name
       FROM users
+      LEFT JOIN jobs
+        ON users.id = jobs.requested_user_id
+      LEFT JOIN services
+        ON jobs.services_id = services.id
+      LEFT JOIN employees
+        ON services.employee_id = employees.id
+      LEFT JOIN users AS workers
+        ON employees.user_id = workers.id
       LEFT JOIN reviews
         ON users.id = reviews.user_id
-      LEFT JOIN employees
-        ON reviews.employee_id = employees.id
-      LEFT JOIN users AS persons
-        ON employees.user_id = persons.id
+      LEFT JOIN employees AS reviewed_employee
+        ON reviews.employee_id = reviewed_employee.id
+      LEFT JOIN users AS reviewed_person_name
+        ON reviewed_employee.user_id = reviewed_person_name.id
       WHERE users.id=#{id};
       SQL
     )
     reviews_written = []
+    open_requests = []
     results.each do |result|
       if result["review_id"]
         reviews_written.push({
@@ -131,6 +148,15 @@ class User
           "review_rating" => result["rating"]
           })
       end
+
+      if result["open_job_id"]
+        open_requests.push({
+          "job_id" => result["open_job_id"].to_i,
+          "service_type" => result["service_type"],
+          "service_price" => result["service_price"].to_f,
+          "workers_name" => result["hired_employee_name"]
+          })
+      end
     end
 
     result=results.first
@@ -139,7 +165,8 @@ class User
       "username" => result["username"],
       "password" => result["password"],
       "address" => result["address"],
-      "reviews_written" => reviews_written
+      "reviews_written" => reviews_written,
+      "open_requests" => open_requests
     }
   end
 

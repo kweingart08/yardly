@@ -28,6 +28,10 @@ class Employee
         services.id AS service_id,
         services.service_type,
         services.service_price,
+        jobs.id AS job_id,
+        jobs.services_id,
+        jobs.requested_user_id,
+        job_requester.username AS requester_name,
         reviews.id AS review_id,
         reviews.user_id AS reviewer_id,
         reviews.employee_id AS employee_reviewed_id,
@@ -39,6 +43,10 @@ class Employee
         ON employees.user_id = users.id
       LEFT JOIN services
         ON employees.id = services.employee_id
+      LEFT JOIN jobs
+        ON services.id = jobs.services_id
+      LEFT JOIN users AS job_requester
+        ON jobs.requested_user_id = job_requester.id
       LEFT JOIN reviews
         ON employees.id = reviews.employee_id
       LEFT JOIN users AS reviewers
@@ -53,6 +61,7 @@ class Employee
     last_employee_id = nil;
     service_id_list = []
     reviews_id_list = []
+    open_jobs_id_list = []
     results.each do |result|
       if result["id"] != last_employee_id
         employee = {
@@ -62,7 +71,8 @@ class Employee
           "employee_password" => result["employee_password"],
           "employee_address" => result["employee_address"],
           "services" => [],
-          "reviews" => []
+          "reviews" => [],
+          "open_jobs" => []
         }
         employees.push(employee)
         last_employee_id = result["id"]
@@ -86,6 +96,17 @@ class Employee
           reviews_id_list.push(result["review_id"])
         end
       end
+      if result["job_id"]
+        if open_jobs_id_list.include?(result["job_id"])
+        else
+          employees.last["open_jobs"].push({
+            "service_type" => result["service_type"],
+            "service_price" => result["service_price"].to_f,
+            "requester_name" => result["requester_name"]
+            })
+          open_jobs_id_list.push(result["job_id"])
+        end
+      end
     end
     return employees
   end
@@ -94,25 +115,81 @@ class Employee
   def self.find(id)
     results = DB.exec(
       <<-SQL
-        SELECT
-          employees.*,
-          users.id AS person_id,
-          users.username,
-          users.password,
-          users.address
-        FROM employees
-        LEFT JOIN users
+      SELECT
+        employees.*,
+        users.id AS employee_user_id,
+        users.username AS employee_username,
+        users.password AS employee_password,
+        users.address AS employee_address,
+        services.id AS service_id,
+        services.service_type,
+        services.service_price,
+        jobs.id AS job_id,
+        jobs.services_id,
+        jobs.requested_user_id,
+        job_requester.username AS requester_name,
+        reviews.id AS review_id,
+        reviews.user_id AS reviewer_id,
+        reviews.employee_id AS employee_reviewed_id,
+        reviews.review_notes,
+        reviews.rating,
+        reviewers.username AS reviewer_name
+      FROM employees
+      LEFT JOIN users
         ON employees.user_id = users.id
-        WHERE employees.id = #{id};
+      LEFT JOIN services
+        ON employees.id = services.employee_id
+      LEFT JOIN jobs
+        ON services.id = jobs.services_id
+      LEFT JOIN users AS job_requester
+        ON jobs.requested_user_id = job_requester.id
+      LEFT JOIN reviews
+        ON employees.id = reviews.employee_id
+      LEFT JOIN users AS reviewers
+        ON reviews.user_id = reviewers.id
+      WHERE employees.id=#{id};
       SQL
     )
+    services = []
+    reviews = []
+    open_jobs = []
+
+    results.each do |result|
+      if result["service_id"]
+        services.push({
+          "service_type" => result["service_type"],
+          "service_price" => result["service_price"].to_f,
+          })
+      end
+
+      if result["review_id"]
+        reviews.push({
+          "review" => result["review_notes"],
+          "rating" => result["rating"],
+          "reviewers_name" => result["reviewer_name"]
+          })
+      end
+
+      if result["job_id"]
+        open_jobs.push({
+          "service_type" => result["service_type"],
+          "service_price" => result["service_price"].to_f,
+          "requester_name" => result["requester_name"]
+          })
+      end
+
+    end
+
     result = results.first
     return {
       "employee_id" => result["id"].to_i,
-      "user_id" => result["person_id"].to_i,
-      "username" => result["username"],
-      "password" => result["password"],
-      "address" => result["address"]
+      "user_id" => result["employee_user_id"].to_i,
+      "employee_name" => result["employee_username"],
+      "employee_password" => result["employee_password"],
+      "employee_address" => result["employee_address"],
+      "services" => services,
+      "reviews" => reviews,
+      "open_jobs" => open_jobs
     }
   end
 
