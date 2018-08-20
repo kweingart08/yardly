@@ -31,3 +31,6 @@
 
 
 # INSERT INTO reviews (user_id, employee_id, review, rating) VALUES (1, 2, 'They did such a great job!', 5);
+
+# CREATE TABLE jobs (id SERIAL, services_id INT, requested_user_id INT);
+# INSERT INTO jobs (services_id, requested_user_id) VALUES (1, 3);
