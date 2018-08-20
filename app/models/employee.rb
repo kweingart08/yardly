@@ -44,11 +44,27 @@ class Employee
 
   #get one (by id)
   def self.find(id)
-    results = DB.exec("SELECT * FROM employees WHERE id=#{id};")
+    results = DB.exec(
+      <<-SQL
+        SELECT
+          employees.*,
+          users.id AS person_id,
+          users.username,
+          users.password,
+          users.address
+        FROM employees
+        LEFT JOIN users
+        ON employees.user_id = users.id
+        WHERE employees.id = #{id};
+      SQL
+    )
     result = results.first
     return {
-      "id" => result["id"].to_i,
-      "user_id" => result["user_id"].to_i
+      "employee_id" => result["id"].to_i,
+      "user_id" => result["person_id"].to_i,
+      "username" => result["username"],
+      "password" => result["password"],
+      "address" => result["address"]
     }
   end
 
