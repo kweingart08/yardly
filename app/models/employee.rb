@@ -107,6 +107,4 @@ class Employee
     }
   end
 
-
-
 end

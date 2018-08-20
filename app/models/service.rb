@@ -17,26 +17,68 @@ class Service
 
   # get all
   def self.all
-    results = DB.exec("SELECT * FROM services;")
+    results = DB.exec(
+      <<-SQL
+        SELECT
+          services.*,
+          employees.id AS worker_id,
+          employees.user_id AS worker_user_id,
+          users.id AS person_id,
+          users.username,
+          users.password,
+          users.address
+        FROM services
+        LEFT JOIN employees
+          ON services.employee_id = employees.id
+        LEFT JOIN users
+          ON employees.user_id = users.id
+        ORDER BY services.id ASC;
+      SQL
+    )
     return results.map do |result|
       {
         "id" => result["id"].to_i,
         "service_type" => result["service_type"],
         "service_price" => result["service_price"].to_f,
-        "employee_id" => result["employee_id"].to_i
+        "employee_id" => result["worker_id"].to_i,
+        "user_id" => result["person_id"].to_i,
+        "username" => result["username"],
+        "password" => result["password"],
+        "address" => result["password"]
       }
     end
   end
 
   #get one (by id)
   def self.find(id)
-    results = DB.exec("SELECT * FROM services WHERE id=#{id};")
+    results = DB.exec(
+      <<-SQL
+        SELECT
+          services.*,
+          employees.id AS worker_id,
+          employees.user_id AS worker_user_id,
+          users.id AS person_id,
+          users.username,
+          users.password,
+          users.address
+        FROM services
+        LEFT JOIN employees
+          ON services.employee_id = employees.id
+        LEFT JOIN users
+          ON employees.user_id = users.id
+        WHERE services.id=#{id};
+      SQL
+    )
     result = results.first
     return {
       "id" => result["id"].to_i,
       "service_type" => result["service_type"],
       "service_price" => result["service_price"].to_f,
-      "employee_id" => result["employee_id"].to_i
+      "employee_id" => result["worker_id"].to_i,
+      "user_id" => result["person_id"].to_i,
+      "username" => result["username"],
+      "password" => result["password"],
+      "address" => result["password"]
     }
   end
 
