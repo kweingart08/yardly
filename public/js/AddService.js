@@ -42,6 +42,8 @@ class AddService extends React.Component {
         </fieldset>
       </form>
 
+      <button onClick={()=> this.props.toggleState('employeeIsVisible', 'userIsVisible', 'addServiceIsVisibile')}>Back</button>
+
       </div>
     )
   }
