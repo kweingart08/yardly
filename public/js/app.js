@@ -267,7 +267,8 @@ class App extends React.Component {
         this.setState({
           user: data,
           userIsVisible: true,
-          loginIsVisible: false
+          loginIsVisible: false,
+          addServiceIsVisibile: false
         })
         if(data.employee_id !==0){
           this.setEmployee(data.employee_id);
