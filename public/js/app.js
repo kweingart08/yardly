@@ -14,9 +14,11 @@ class App extends React.Component {
     this.toggleState = this.toggleState.bind(this)
   }
 
-  toggleState(state){
+  toggleState(state1, state2, state3){
     this.setState({
-      [state]: !this.state[state]
+      [state1]: !this.state[state1],
+      [state2]: !this.state[state2],
+      [state3]: !this.state[state3]
     })
   }
 
@@ -25,17 +27,23 @@ class App extends React.Component {
       <div className="app">
 
         {this.state.frontIsVisible ?
-          <Front />
+          <Front
+            toggleState={this.toggleState}
+          />
           : ''
         }
 
         {this.state.registerIsVisible ?
-          <Register />
+          <Register
+            toggleState={this.toggleState}
+          />
           : ''
         }
 
         {this.state.loginIsVisible ?
-          <Login />
+          <Login
+            toggleState={this.toggleState}
+          />
           : ''
         }
 
