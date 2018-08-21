@@ -1,5 +1,6 @@
 class UserPage extends React.Component {
   render(){
+    console.log(this.props.user);
     return (
       <div className="user">
         <h2>Welcome {this.props.user.username}</h2>
@@ -30,9 +31,18 @@ class UserPage extends React.Component {
           </tbody>
         </table>
 
-        <button
-          onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible')}
-        >See List of Services</button>
+        {this.props.employee_id !== 0?
+          <button
+            onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible', 'employeeIsVisible')}
+          >See List of Services</button>
+
+          :
+
+          <button
+            onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible')}
+          >See List of Services</button>
+        }
+
 
       </div>
     )

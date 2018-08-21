@@ -2,13 +2,9 @@ class AddService extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      service_type: null,
-      service_price: null,
-      employee_id: null
+
     }
-    this.handleServiceChange = this.handleServiceChange.bind(this)
-    this.handlePriceChange = this.handlePriceChange.bind(this)
-    this.handleIDChange = this.handleIDChange.bind(this)
+
   }
 
 
@@ -35,13 +31,6 @@ class AddService extends React.Component {
               type="number"
               id="service_price"
               onChange={this.handlePriceChange}
-            />
-
-            <label for="employee_id">Employee ID</label>
-            <input
-              type="number"
-              id="employee_id"
-              onChange={this.handleIDChange}
             />
 
             <div className="submit">

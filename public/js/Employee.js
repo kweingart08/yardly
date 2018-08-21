@@ -49,7 +49,7 @@ class Employee extends React.Component {
           </tbody>
         </table>
 
-        <button>Add More Offered Services</button>
+        <button onClick={()=> this.props.toggleState('employeeIsVisible', 'userIsVisible', 'addServiceIsVisibile')}>Add More Offered Services</button>
 
       </div>
     )

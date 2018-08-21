@@ -126,7 +126,7 @@ class App extends React.Component {
   /*======================
   add a job to the user
   ======================*/
-  addJob(serviceID, userID){
+  addJob(serviceID, userID, employeeID){
     console.log('added', serviceID, userID);
 
     fetch('/jobs', {
@@ -147,7 +147,11 @@ class App extends React.Component {
       // this.handleCreateJob(jsonedJob)
       console.log(jsonedJob);
       //creates the job but doesn't refresh the users page and render??
+      if(employeeID !==0){
+        this.toggleState('userIsVisible', 'providedServicesIsVisible', 'employeeIsVisible')
+      } else {
       this.toggleState('userIsVisible', 'providedServicesIsVisible')
+    }
     })
     .catch(error=>console.log(error))
   }
