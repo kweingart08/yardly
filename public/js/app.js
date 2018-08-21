@@ -4,6 +4,8 @@ class App extends React.Component {
       <div className="app">
         <Front />
         <Register />
+        <Login />
+        <User />
       </div>
     )
   }
