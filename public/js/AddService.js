@@ -12,10 +12,11 @@ class AddService extends React.Component {
 
   render(){
     console.log(this.props.user);
+    console.log(this.props.employee);
     return (
       <div className="add-service">
 
-      <form onSubmit={this.addService}>
+      <form onSubmit={this.props.addNewService}>
         <fieldset>
           <legend>Add a New Provided Service</legend>
 

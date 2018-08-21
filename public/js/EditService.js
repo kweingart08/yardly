@@ -3,7 +3,7 @@ class EditService extends React.Component {
     return (
       <div className="edit-service">
 
-      <form>
+      <form onSubmit={this.props.updateService}>
         <fieldset>
           <legend>Edit Provided Service</legend>
 
@@ -21,6 +21,8 @@ class EditService extends React.Component {
             </div>
         </fieldset>
       </form>
+
+      <button onClick={()=> this.props.toggleState('employeeIsVisible', 'userIsVisible', 'editServiceIsVisible')}>Back</button>
 
       </div>
     )

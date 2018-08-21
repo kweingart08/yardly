@@ -123,7 +123,29 @@ class App extends React.Component {
     .then(data => {
       console.log(data);
       //deletes but need page to reload
-
+      //update state
+      fetch('users/' + this.state.user.username, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        // console.log(data);
+        this.setState({
+          user: data,
+          userIsVisible: true,
+          loginIsVisible: false
+        })
+        if(data.employee_id !==0){
+          this.setEmployee(data.employee_id);
+        }
+      }).catch(error => console.log(error))
+      //run get or go in array
     })
   }
 
@@ -156,6 +178,8 @@ class App extends React.Component {
       // this.handleCreateJob(jsonedJob)
       console.log(jsonedJob);
       //creates the job but doesn't refresh the users page and render??
+
+
       if(employeeID !==0){
         this.toggleState('userIsVisible', 'providedServicesIsVisible', 'employeeIsVisible')
       } else {
@@ -177,6 +201,35 @@ class App extends React.Component {
         availableServices: data
       })
     }).catch(error => console.log(error))
+  }
+
+  /*======================
+  add a new service
+  ======================*/
+  addNewService(){
+    console.log('adding service');
+    //goes back to log in page. How to just update services
+    // getAvailableServices();
+  }
+
+  /*======================
+  update a new service
+  ======================*/
+  updateService(){
+    console.log('updating service');
+  }
+  /*======================
+  delete a new service
+  ======================*/
+  deleteService(){
+    console.log('deleting service');
+  }
+
+  /*======================
+  delete a Job
+  ======================*/
+  deleteJob(){
+
   }
 
   render(){
@@ -232,6 +285,8 @@ class App extends React.Component {
             toggleState={this.toggleState}
             user={this.state.user}
             employee={this.state.employee}
+            updateService={this.updateService}
+            deleteService={this.deleteService}
           />
           : ''
         }
@@ -240,13 +295,17 @@ class App extends React.Component {
           <AddService
             toggleState={this.toggleState}
             user={this.state.user}
-            addRequest={this.addRequest}
+            employee={this.state.employee}
+            addNewService={this.addNewService}
           />
           : ''
         }
 
         {this.state.editServiceIsVisible ?
-          <EditService />
+          <EditService
+            toggleState={this.toggleState}
+            updateService={this.updateService}
+          />
           : ''
         }
 

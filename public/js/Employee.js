@@ -41,8 +41,8 @@ class Employee extends React.Component {
               <tr>
                 <td> {service.service_type} </td>
                 <td> ${service.service_price} </td>
-                <td><i class="far fa-edit"></i></td>
-                <td><i class="far fa-trash-alt"></i></td>
+                <td><i class="far fa-edit" onClick={()=> this.props.toggleState('employeeIsVisible', 'userIsVisible', 'editServiceIsVisible')}></i></td>
+                <td><i class="far fa-trash-alt" onClick={ () => this.props.deleteService()}></i></td>
               </tr>
             )
           })}
