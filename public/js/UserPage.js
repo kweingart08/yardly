@@ -33,6 +33,12 @@ class UserPage extends React.Component {
         <button
           onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible')}
         >See List of Services</button>
+
+      {this.props.user.employee_id !== 0?
+        <Employee />
+        : ''
+      }
+
       </div>
     )
   }
