@@ -243,8 +243,11 @@ class App extends React.Component {
   /*======================
   delete a new service
   ======================*/
-  deleteService(){
-    console.log('deleting service');
+  deleteService(service, index){
+    console.log('deleting service', service, index);
+
+
+
   }
 
   /*======================

@@ -80,6 +80,7 @@ class Employee
       if service_id_list.include?(result["service_id"])
       else
         employees.last["services"].push({
+          "service_id" => result["service_id"].to_i,
           "service_type" => result["service_type"],
           "service_price" => result["service_price"].to_f,
           })
@@ -158,6 +159,7 @@ class Employee
     results.each do |result|
       if result["service_id"]
         services.push({
+          "service_id" => result["service_id"].to_i,
           "service_type" => result["service_type"],
           "service_price" => result["service_price"].to_f,
           })
