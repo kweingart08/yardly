@@ -176,7 +176,8 @@ class App extends React.Component {
     })
     .then(jsonedJob => {
       // this.handleCreateJob(jsonedJob)
-      console.log(jsonedJob);
+      console.log("jsoned", jsonedJob);
+
 
       fetch('users/' + this.state.user.username, {
         method: 'GET',
@@ -308,6 +309,7 @@ class App extends React.Component {
             employee={this.state.employee}
             updateService={this.updateService}
             deleteService={this.deleteService}
+            deleteRequest={this.deleteRequest}
           />
           : ''
         }

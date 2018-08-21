@@ -6,7 +6,6 @@ class ProvidedServices extends React.Component {
   }
 
   handleAddRequest(id){
-    console.log('handled', id, this.props.user.user_id);
     //when clicked want to take the user id and the service id and create a new job
     this.props.addJob(id, this.props.user.user_id, this.props.user.employee_id)
   }

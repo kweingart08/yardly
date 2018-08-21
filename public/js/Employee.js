@@ -18,7 +18,7 @@ class Employee extends React.Component {
                 <tr>
                   <td>{job.service_type}</td>
                   <td>{job.requester_name}</td>
-                  <td><i class="far fa-trash-alt"></i></td>
+                  <td><i class="far fa-trash-alt" onClick={ () => this.props.deleteRequest(job, index)}></i></td>
                 </tr>
               )
             })}
