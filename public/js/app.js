@@ -64,7 +64,6 @@ class App extends React.Component {
   delete a user current requests
   ======================*/
   deleteRequest(request, index){
-    event.preventDefault()
     console.log(request);
     fetch('/jobs/' + request.job_id,
     {
@@ -72,13 +71,15 @@ class App extends React.Component {
     })
     .then(data => {
       console.log(data);
-      // deleting but not updating the page
+      //deletes but need page to reload
+
 
     })
   }
 
+
   handleCreateJob(job){
-    
+    console.log(job);
   }
 
   /*======================
@@ -87,11 +88,11 @@ class App extends React.Component {
   addJob(serviceID, userID){
     console.log('added', serviceID, userID);
 
-    fetch('jobs', {
-      body: {
-        services_id: serviceID,
-        requested_user_id: userID
-      },
+    fetch('/jobs', {
+      body: JSON.stringify({
+        "services_id": serviceID,
+        "requested_user_id": userID
+      }),
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -102,7 +103,9 @@ class App extends React.Component {
       return createdJob.json()
     })
     .then(jsonedJob => {
-      this.handleCreateJob(jsonedJob)
+      // this.handleCreateJob(jsonedJob)
+      console.log(jsonedJob);
+      //creates the job but doesn't refresh the users page and render??
       this.toggleState('userIsVisible', 'providedServicesIsVisible')
     })
     .catch(error=>console.log(error))
@@ -154,6 +157,7 @@ class App extends React.Component {
           <UserPage
             toggleState={this.toggleState}
             user={this.state.user}
+            deleteRequest={this.deleteRequest}
           />
           : ''
         }
