@@ -177,7 +177,28 @@ class App extends React.Component {
     .then(jsonedJob => {
       // this.handleCreateJob(jsonedJob)
       console.log(jsonedJob);
-      //creates the job but doesn't refresh the users page and render??
+
+      fetch('users/' + this.state.user.username, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        // console.log(data);
+        this.setState({
+          user: data,
+          userIsVisible: true,
+          loginIsVisible: false
+        })
+        if(data.employee_id !==0){
+          this.setEmployee(data.employee_id);
+        }
+      }).catch(error => console.log(error))
 
 
       if(employeeID !==0){
