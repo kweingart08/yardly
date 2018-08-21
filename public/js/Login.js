@@ -13,7 +13,7 @@ class Login extends React.Component {
             <input type="text" id="password" />
 
             <div className="submit">
-              <input className="button" type="submit" value="Login" />
+              <input className="button" type="submit" value="Log In" />
             </div>
         </fieldset>
       </form>

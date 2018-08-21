@@ -17,7 +17,7 @@ class Register extends React.Component {
             <input type="text" id="address" />
 
             <div className="submit">
-              <input className="button" type="submit" value="Submit" />
+              <input className="button" type="submit" value="Register" />
             </div>
         </fieldset>
       </form>

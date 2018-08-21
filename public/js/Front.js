@@ -5,7 +5,7 @@ class Front extends React.Component {
         <p>Are you working hard or YARDLY working</p>
         <p>All of your yard work needs done by someone else</p>
 
-        <button>GET STARTED</button>
+        <button>Register</button>
         <button>SIGN IN</button>
       </div>
     )
