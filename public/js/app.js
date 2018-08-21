@@ -11,8 +11,8 @@ class App extends React.Component {
       addServiceIsVisibile: false,
       editServiceIsVisible: false,
       availableServices: [],
-      employee: null,
       user: null,
+      employee: null
     }
     this.toggleState = this.toggleState.bind(this);
     this.setUser = this.setUser.bind(this);
@@ -20,6 +20,7 @@ class App extends React.Component {
     this.getAvailableServices = this.getAvailableServices.bind(this);
     this.addJob = this.addJob.bind(this);
     this.logout = this.logout.bind(this);
+    this.setEmployee = this.setEmployee.bind(this);
   }
   /*======================
   page load
@@ -52,12 +53,35 @@ class App extends React.Component {
       return response.json()
     })
     .then(data => {
-      console.log(data);
+      // console.log(data);
       this.setState({
         user: data,
         userIsVisible: true,
         loginIsVisible: false
-      });
+      })
+      if(data.employee_id !==0){
+        this.setEmployee(data.employee_id);
+      }
+    }).catch(error => console.log(error))
+  }
+
+  setEmployee(id){
+    fetch('employees/' + id, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      // console.log(data);
+      this.setState({
+        employee: data,
+        employeeIsVisible: true
+      })
     }).catch(error => console.log(error))
   }
 
@@ -65,6 +89,11 @@ class App extends React.Component {
   logout user
   ======================*/
   logout(){
+    if(this.state.employeeIsVisible === true){
+      this.setState({
+        employeeIsVisible: false
+      })
+    }
     this.setState({
       user: null,
       userIsVisible: false,
@@ -88,7 +117,6 @@ class App extends React.Component {
 
     })
   }
-
 
 
   handleCreateJob(job){
@@ -187,7 +215,11 @@ class App extends React.Component {
         }
 
         {this.state.employeeIsVisible ?
-          <Employee />
+          <Employee
+            toggleState={this.toggleState}
+            user={this.state.user}
+            employee={this.state.employee}
+          />
           : ''
         }
 
