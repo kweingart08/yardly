@@ -7,6 +7,9 @@ class App extends React.Component {
         <Login />
         <User />
         <ProvidedServices />
+        <Employee />
+        <AddService />
+        <EditService />
       </div>
     )
   }
