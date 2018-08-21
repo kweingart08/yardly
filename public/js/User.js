@@ -1,8 +1,9 @@
 class User extends React.Component {
   render(){
+    console.log(this.state.user);
     return (
       <div className="user">
-        <h2>Welcome NAME</h2>
+        <h2>Welcome NAME </h2>
 
         <h5>Current Requests</h5>
         <table class="u-full-width">

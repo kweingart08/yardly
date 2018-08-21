@@ -96,7 +96,7 @@ class User
   end
 
   #get one (by id)
-  def self.find(id)
+  def self.find(username)
     results = DB.exec(
       <<-SQL
       SELECT
@@ -132,7 +132,7 @@ class User
         ON reviews.employee_id = reviewed_employee.id
       LEFT JOIN users AS reviewed_person_name
         ON reviewed_employee.user_id = reviewed_person_name.id
-      WHERE users.id=#{id};
+      WHERE users.username='#{username}';
       SQL
     )
     reviews_written = []
