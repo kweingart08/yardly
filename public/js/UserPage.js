@@ -1,4 +1,12 @@
 class UserPage extends React.Component {
+  constructor(props){
+    super(props)
+  }
+
+  // componentDidMount(){
+  //   console.log('mounted');
+  // }
+
   render(){
     console.log(this.props.user);
     return (

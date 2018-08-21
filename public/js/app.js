@@ -23,12 +23,15 @@ class App extends React.Component {
     this.setEmployee = this.setEmployee.bind(this);
   }
   /*======================
-  page load
+  on page load - get all of the available services
   ======================*/
   componentDidMount(){
     this.getAvailableServices();
   }
 
+  /*======================
+  toggle state for different views
+  ======================*/
   toggleState(state1, state2, state3){
     this.setState({
       [state1]: !this.state[state1],
@@ -38,7 +41,8 @@ class App extends React.Component {
   }
 
   /*======================
-  set user
+  set user with the login information coming from Login.js
+  check if the user is an employee
   ======================*/
   setUser(username, password){
     event.preventDefault()
@@ -65,6 +69,10 @@ class App extends React.Component {
     }).catch(error => console.log(error))
   }
 
+  /*======================
+  if the user is an employee, set the employee state to get all the employee information
+  show the Employee.js
+  ======================*/
   setEmployee(id){
     fetch('employees/' + id, {
       method: 'GET',
@@ -87,10 +95,12 @@ class App extends React.Component {
 
   /*======================
   logout user
+
   ======================*/
   logout(){
     if(this.state.employeeIsVisible === true){
       this.setState({
+        employee: null,
         employeeIsVisible: false
       })
     }
@@ -114,14 +124,13 @@ class App extends React.Component {
       console.log(data);
       //deletes but need page to reload
 
-
     })
   }
 
 
-  handleCreateJob(job){
-    console.log(job);
-  }
+  // handleCreateJob(job){
+  //   console.log(job);
+  // }
 
   /*======================
   add a job to the user
