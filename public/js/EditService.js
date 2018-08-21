@@ -1,4 +1,15 @@
 class EditService extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      service_type: '',
+      service_price: null,
+      employee_id: null
+    }
+  }
+
+
+
   render(){
     return (
       <div className="edit-service">
@@ -8,10 +19,18 @@ class EditService extends React.Component {
           <legend>Edit Provided Service</legend>
 
             <label for="service_type">Service Name</label>
-            <input type="text" id="service_type" />
+            <input
+              type="text"
+              id="service_type"
+              value={this.state.service_type}
+            />
 
             <label for="service_price">Price</label>
-            <input type="number" id="service_price" />
+            <input
+              type="number"
+              id="service_price"
+              value={this.state.service_price}
+            />
 
             <label for="employee_id">Employee ID</label>
             <input type="text" id="employee_id" />
