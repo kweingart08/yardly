@@ -43,6 +43,7 @@ class ProvidedServices extends React.Component {
           </tbody>
         </table>
 
+        <button onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible')} >Back</button>
 
       </div>
     )

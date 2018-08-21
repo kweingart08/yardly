@@ -31,17 +31,9 @@ class UserPage extends React.Component {
           </tbody>
         </table>
 
-        {this.props.employee_id !== 0?
-          <button
-            onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible', 'employeeIsVisible')}
-          >See List of Services</button>
-
-          :
-
           <button
             onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible')}
           >See List of Services</button>
-        }
 
 
       </div>

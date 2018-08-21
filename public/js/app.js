@@ -151,7 +151,7 @@ class App extends React.Component {
         this.toggleState('userIsVisible', 'providedServicesIsVisible', 'employeeIsVisible')
       } else {
       this.toggleState('userIsVisible', 'providedServicesIsVisible')
-    }
+      }
     })
     .catch(error=>console.log(error))
   }
