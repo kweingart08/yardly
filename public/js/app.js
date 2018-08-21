@@ -11,11 +11,14 @@ class App extends React.Component {
       addServiceIsVisibile: false,
       editServiceIsVisible: false,
       employee: null,
+      user: null,
       openUserRequests: [],
       currentJobsToDo: [],
       providedServices: []
     }
-    this.toggleState = this.toggleState.bind(this)
+    this.toggleState = this.toggleState.bind(this);
+    this.setUser = this.setUser.bind(this);
+    this.deleteService = this.deleteService.bind(this);
   }
   /*======================
   page load
@@ -35,34 +38,39 @@ class App extends React.Component {
   /*======================
   set user
   ======================*/
-  setUser(user){
-    this.setState({
-      user: user
-    })
-    this.getUserRequests(user['id']);
-  }
-
-  setUserRequests(requests){
-    console.log('requests', requests);
-    if(requests.results.length > 0){
-      this.setState({
-        openUserRequests: requests.results
-      })
-    }
-  }
-
-  getUserRequests(id){
-    console.log('getting job requests', id);
-    fetch('/users/' + id, {
+  setUser(username, password){
+    event.preventDefault()
+    fetch('users/' + username, {
+      method: 'GET',
       headers: {
+        'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(JSONdata => {
-      console.log('jsondata', JSONdata);
-      this.setUserRequests(JSONdata);
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      console.log(data);
+      this.setState({
+        user: data,
+        userIsVisible: true,
+        loginIsVisible: false
+      });
     }).catch(error => console.log(error))
+  }
+
+  deleteService(request, index){
+    console.log(request);
+    fetch('/jobs/' + request.job_id,
+    {
+      method: 'DELETE'
+    })
+    .then(data => {
+      console.log(data);
+      // deleting but not updating the page
+
+    })
   }
 
 
@@ -89,12 +97,17 @@ class App extends React.Component {
         {this.state.loginIsVisible ?
           <Login
             toggleState={this.toggleState}
+            setUser={this.setUser}
           />
           : ''
         }
 
         {this.state.userIsVisible ?
-          <User />
+          <UserPage
+            toggleState={this.toggleState}
+            user={this.state.user}
+            deleteService={this.deleteService}
+          />
           : ''
         }
 

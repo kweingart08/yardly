@@ -17,7 +17,12 @@ class UserPage extends React.Component {
               return (
                 <tr>
                   <td>{request.service_type}</td>
-                  <td><i class="far fa-trash-alt"></i></td>
+                  <td>
+                    <i class="far fa-trash-alt"
+                    onClick={ () => this.props.deleteService(request, index)}
+                    >
+                    </i>
+                  </td>
                 </tr>
               )
             })}
