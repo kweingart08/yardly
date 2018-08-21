@@ -21,6 +21,8 @@ class User
       <<-SQL
       SELECT
         users.*,
+        employeed_user.user_id AS employed_person_id,
+        employeed_user.id AS employee_id,
         jobs.id AS open_job_id,
         jobs.services_id,
         jobs.requested_user_id,
@@ -38,6 +40,8 @@ class User
         reviews.rating,
         reviewed_person_name.username AS reviewed_person_name
       FROM users
+      LEFT JOIN employees AS employeed_user
+        ON users.id = employeed_user.user_id
       LEFT JOIN jobs
         ON users.id = jobs.requested_user_id
       LEFT JOIN services
@@ -65,6 +69,7 @@ class User
             "username" => result["username"],
             "password" => result["password"],
             "address" => result["address"],
+            "employee_id" => result["employee_id"].to_i,
             "open_requests" => [],
             "reviews_written" => []
           }
@@ -101,6 +106,8 @@ class User
       <<-SQL
       SELECT
         users.*,
+        employeed_user.user_id AS employed_person_id,
+        employeed_user.id AS employee_id,
         jobs.id AS open_job_id,
         jobs.services_id,
         jobs.requested_user_id,
@@ -118,6 +125,8 @@ class User
         reviews.rating,
         reviewed_person_name.username AS reviewed_person_name
       FROM users
+      LEFT JOIN employees AS employeed_user
+        ON users.id = employeed_user.user_id
       LEFT JOIN jobs
         ON users.id = jobs.requested_user_id
       LEFT JOIN services
@@ -165,6 +174,7 @@ class User
       "username" => result["username"],
       "password" => result["password"],
       "address" => result["address"],
+      "employee_id" => result["employee_id"].to_i,
       "reviews_written" => reviews_written,
       "open_requests" => open_requests
     }

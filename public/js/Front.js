@@ -16,6 +16,7 @@ class Front extends React.Component {
         onClick={ () => this.props.toggleState( 'frontIsVisible', 'loginIsVisible' )}
         toggleState={this.props.toggleState}
         >SIGN IN</button>
+
       </div>
     )
   }
