@@ -1,9 +1,8 @@
-class User extends React.Component {
+class UserPage extends React.Component {
   render(){
-    console.log(this.state.user);
     return (
       <div className="user">
-        <h2>Welcome NAME </h2>
+        <h2>Welcome {this.props.user.username}</h2>
 
         <h5>Current Requests</h5>
         <table class="u-full-width">
@@ -14,14 +13,14 @@ class User extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td> Mow </td>
-              <td><i class="far fa-trash-alt"></i></td>
-            </tr>
-            <tr>
-              <td> Water Flowers </td>
-              <td><i class="far fa-trash-alt"></i></td>
-            </tr>
+            {this.props.user.open_requests.map( (request, index) => {
+              return (
+                <tr>
+                  <td>{request.service_type}</td>
+                  <td><i class="far fa-trash-alt"></i></td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
 

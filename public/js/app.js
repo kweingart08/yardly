@@ -10,7 +10,6 @@ class App extends React.Component {
       employeeIsVisible: false,
       addServiceIsVisibile: false,
       editServiceIsVisible: false,
-      user: null,
       employee: null,
       openUserRequests: [],
       currentJobsToDo: [],

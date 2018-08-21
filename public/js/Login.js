@@ -4,7 +4,7 @@ class Login extends React.Component {
     this.state = {
       username: '',
       password: '',
-      user: {}
+      user: null
     }
     this.handleUsername = this.handleUsername.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
@@ -13,24 +13,19 @@ class Login extends React.Component {
 
 
   handleUsername(){
-    console.log(event.target.value);
     this.setState({
       username: event.target.value
     })
   }
 
   handlePassword(){
-    console.log(event.target.value);
     this.setState({
       password: event.target.value
     })
-    console.log(this.state.password);
   }
 
   getUser(){
     event.preventDefault()
-    console.log('USERNAME', this.state.username);
-
     fetch('users/' + this.state.username, {
       method: 'GET',
       headers: {
@@ -52,35 +47,39 @@ class Login extends React.Component {
   render(){
     return (
       <div className="login">
-      // {this.state.username}
-      // {this.state.password}
-      // {this.state.user.address}
-      <form onSubmit={this.getUser}>
-        <fieldset>
-          <legend>Log In</legend>
-            <label for="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              onChange={this.handleUsername}
-            />
-
-            <label for="password">Password</label>
-            <input
-              type="text"
-              id="password"
-              onChange={this.handlePassword}
-            />
-
-            <div className="submit">
+        <form onSubmit={this.getUser}>
+          <fieldset>
+            <legend>Log In</legend>
+              <label for="username">Username</label>
               <input
-                className="button"
-                type="submit"
-                value="Log In"
+                type="text"
+                id="username"
+                onChange={this.handleUsername}
               />
-            </div>
-        </fieldset>
-      </form>
+
+              <label for="password">Password</label>
+              <input
+                type="text"
+                id="password"
+                onChange={this.handlePassword}
+              />
+
+              <div className="submit">
+                <input
+                  className="button"
+                  type="submit"
+                  value="Log In"
+                />
+              </div>
+          </fieldset>
+        </form>
+
+        {this.state.user ?
+          <UserPage
+            user={this.state.user}
+          />
+          : 'no'
+        }
 
       </div>
     )
