@@ -23,10 +23,11 @@ class AddService extends React.Component {
     })
   }
 
-  addService(){
+  addService(event){
     // console.log(this.state.service_type);
     // console.log(this.state.service_price);
-    this.props.addNewService(this.state.service_type, this.state.service_price, this.props.employee.employee_id)
+    event.preventDefault();
+    this.props.addNewService(this.state.service_type, this.state.service_price, this.props.employee.employee_id, this.props.user.username)
   }
 
   render(){

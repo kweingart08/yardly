@@ -22,6 +22,7 @@ class App extends React.Component {
     this.logout = this.logout.bind(this);
     this.setEmployee = this.setEmployee.bind(this);
     this.deleteService = this.deleteService.bind(this);
+    this.addNewService = this.addNewService.bind(this);
   }
   /*======================
   on page load - get all of the available services
@@ -231,7 +232,7 @@ class App extends React.Component {
   ======================*/
   addNewService(serviceName, price, employee_id){
     // console.log('adding service', serviceName, price, employee_id);
-
+    console.log(event);
     fetch('/services', {
       body: JSON.stringify({
         "service_type": serviceName,
@@ -273,6 +274,12 @@ class App extends React.Component {
         }
       }).catch(error => console.log(error))
 
+
+      if(employeeID !==0){
+        this.toggleState('userIsVisible', 'providedServicesIsVisible', 'employeeIsVisible')
+      } else {
+      this.toggleState('userIsVisible', 'providedServicesIsVisible')
+      }
 
 
   })
