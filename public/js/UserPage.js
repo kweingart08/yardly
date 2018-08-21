@@ -19,7 +19,7 @@ class UserPage extends React.Component {
                   <td>{request.service_type}</td>
                   <td>
                     <i class="far fa-trash-alt"
-                    onClick={ () => this.props.deleteService(request, index)}
+                    onClick={ () => this.props.deleteRequest(request, index)}
                     >
                     </i>
                   </td>
@@ -29,7 +29,9 @@ class UserPage extends React.Component {
           </tbody>
         </table>
 
-        <button>Add More Services</button>
+        <button
+          onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible')}
+        >See List of Services</button>
       </div>
     )
   }

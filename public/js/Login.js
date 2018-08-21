@@ -23,7 +23,7 @@ class Login extends React.Component {
   }
 
   getUser(){
-    this.props.setUser(this.state.username, this.state,password)
+    this.props.setUser(this.state.username, this.state.password)
   }
 
   render(){

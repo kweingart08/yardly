@@ -10,21 +10,20 @@ class App extends React.Component {
       employeeIsVisible: false,
       addServiceIsVisibile: false,
       editServiceIsVisible: false,
+      availableServices: [],
       employee: null,
       user: null,
-      openUserRequests: [],
-      currentJobsToDo: [],
-      providedServices: []
     }
     this.toggleState = this.toggleState.bind(this);
     this.setUser = this.setUser.bind(this);
-    this.deleteService = this.deleteService.bind(this);
+    this.deleteRequest = this.deleteRequest.bind(this);
+    this.getAvailableServices = this.getAvailableServices.bind(this);
   }
   /*======================
   page load
   ======================*/
   componentDidMount(){
-
+    this.getAvailableServices();
   }
 
   toggleState(state1, state2, state3){
@@ -60,7 +59,11 @@ class App extends React.Component {
     }).catch(error => console.log(error))
   }
 
-  deleteService(request, index){
+  /*======================
+  delete a user current requests
+  ======================*/
+  deleteRequest(request, index){
+    event.preventDefault()
     console.log(request);
     fetch('/jobs/' + request.job_id,
     {
@@ -73,6 +76,19 @@ class App extends React.Component {
     })
   }
 
+  /*======================
+  get available services
+  ======================*/
+  getAvailableServices(){
+    fetch('/services')
+    .then(response => response.json())
+    .then(data => {
+      // console.log(data);
+      this.setState({
+        availableServices: data
+      })
+    }).catch(error => console.log(error))
+  }
 
   render(){
     return (
@@ -106,13 +122,16 @@ class App extends React.Component {
           <UserPage
             toggleState={this.toggleState}
             user={this.state.user}
-            deleteService={this.deleteService}
           />
           : ''
         }
 
         {this.state.providedServicesIsVisible ?
-          <ProvidedServices />
+          <ProvidedServices
+            toggleState={this.toggleState}
+            user={this.state.user}
+            availableServices={this.state.availableServices}
+          />
           : ''
         }
 
@@ -122,7 +141,11 @@ class App extends React.Component {
         }
 
         {this.state.addServiceIsVisibile ?
-          <AddService />
+          <AddService
+            toggleState={this.toggleState}
+            user={this.state.user}
+            addRequest={this.addRequest}
+          />
           : ''
         }
 

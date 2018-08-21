@@ -1,5 +1,6 @@
 class ProvidedServices extends React.Component {
   render(){
+    console.log(this.props.availableServices);
     return (
       <div className="provided-services">
 
@@ -9,23 +10,21 @@ class ProvidedServices extends React.Component {
             <tr>
               <th>Service</th>
               <th>Price</th>
-              <th>Employee/Rating</th>
+              <th>Employee</th>
               <th>Add</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td> Mow </td>
-              <td> $25 </td>
-              <td> Kate 4.5 </td>
-              <td><i class="fas fa-plus"></i></td>
-            </tr>
-            <tr>
-              <td> Water Flowers </td>
-              <td> $12 </td>
-              <td> Andy 4.2 </td>
-              <td><i class="fas fa-plus"></i></td>
-            </tr>
+            {this.props.availableServices.map((service, index) => {
+              return (
+              <tr>
+                <td>{service.service_type}</td>
+                <td>{service.service_price}</td>
+                <td>{service.username}</td>
+                <td><i class="fas fa-plus"></i></td>
+              </tr>
+            )
+            })}
           </tbody>
         </table>
 
