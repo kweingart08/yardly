@@ -21,6 +21,7 @@ class App extends React.Component {
     this.addJob = this.addJob.bind(this);
     this.logout = this.logout.bind(this);
     this.setEmployee = this.setEmployee.bind(this);
+    this.deleteService = this.deleteService.bind(this);
   }
   /*======================
   on page load - get all of the available services
@@ -228,11 +229,55 @@ class App extends React.Component {
   /*======================
   add a new service
   ======================*/
-  addNewService(){
-    console.log('adding service');
-    //goes back to log in page. How to just update services
-    // getAvailableServices();
-  }
+  addNewService(serviceName, price, employee_id){
+    // console.log('adding service', serviceName, price, employee_id);
+
+    fetch('/services', {
+      body: JSON.stringify({
+        "service_type": serviceName,
+        "service_price": price,
+        "employee_id": employee_id
+      }),
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(createdService => {
+      return createdService.json()
+    })
+    .then(jsonedService => {
+      // this.handleCreateJob(jsonedJob)
+      console.log("jsoned", jsonedService);
+
+      fetch('users/' + this.state.user.username, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        // console.log(data);
+        this.setState({
+          user: data,
+          userIsVisible: true,
+          loginIsVisible: false
+        })
+        if(data.employee_id !==0){
+          this.setEmployee(data.employee_id);
+        }
+      }).catch(error => console.log(error))
+
+
+
+  })
+  .catch(error=> console.log(error))
+}
 
   /*======================
   update a new service
@@ -246,7 +291,37 @@ class App extends React.Component {
   deleteService(service, index){
     console.log('deleting service', service, index);
 
-
+    fetch('/services/' + service.service_id,
+    {
+      method: 'DELETE'
+    })
+    .then(data => {
+      console.log(data);
+      //deletes but need page to reload
+      //update state
+      fetch('users/' + this.state.user.username, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        // console.log(data);
+        this.setState({
+          user: data,
+          userIsVisible: true,
+          loginIsVisible: false
+        })
+        if(data.employee_id !==0){
+          this.setEmployee(data.employee_id);
+        }
+      }).catch(error => console.log(error))
+      //run get or go in array
+    })
 
   }
 
