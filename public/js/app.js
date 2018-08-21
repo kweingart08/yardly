@@ -18,6 +18,7 @@ class App extends React.Component {
     this.setUser = this.setUser.bind(this);
     this.deleteRequest = this.deleteRequest.bind(this);
     this.getAvailableServices = this.getAvailableServices.bind(this);
+    this.addJob = this.addJob.bind(this);
   }
   /*======================
   page load
@@ -76,6 +77,37 @@ class App extends React.Component {
     })
   }
 
+  handleCreateJob(job){
+    
+  }
+
+  /*======================
+  add a job to the user
+  ======================*/
+  addJob(serviceID, userID){
+    console.log('added', serviceID, userID);
+
+    fetch('jobs', {
+      body: {
+        services_id: serviceID,
+        requested_user_id: userID
+      },
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(createdJob => {
+      return createdJob.json()
+    })
+    .then(jsonedJob => {
+      this.handleCreateJob(jsonedJob)
+      this.toggleState('userIsVisible', 'providedServicesIsVisible')
+    })
+    .catch(error=>console.log(error))
+  }
+
   /*======================
   get available services
   ======================*/
@@ -131,6 +163,7 @@ class App extends React.Component {
             toggleState={this.toggleState}
             user={this.state.user}
             availableServices={this.state.availableServices}
+            addJob={this.addJob}
           />
           : ''
         }

@@ -1,6 +1,19 @@
 class ProvidedServices extends React.Component {
+  constructor(props){
+    super(props)
+    this.handleAddRequest = this.handleAddRequest.bind(this);
+
+  }
+
+  handleAddRequest(id){
+    console.log('handled', id, this.props.user.user_id);
+    //when clicked want to take the user id and the service id and create a new job
+    this.props.addJob(id, this.props.user.user_id)
+  }
+
   render(){
     console.log(this.props.availableServices);
+    console.log(this.props.user);
     return (
       <div className="provided-services">
 
@@ -21,7 +34,9 @@ class ProvidedServices extends React.Component {
                 <td>{service.service_type}</td>
                 <td>{service.service_price}</td>
                 <td>{service.username}</td>
-                <td><i class="fas fa-plus"></i></td>
+                <td><i class="fas fa-plus"
+                onClick={ () => this.handleAddRequest(service.id)}
+                ></i></td>
               </tr>
             )
             })}
