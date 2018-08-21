@@ -3,6 +3,7 @@ class UserPage extends React.Component {
     return (
       <div className="user">
         <h2>Welcome {this.props.user.username}</h2>
+        <button onClick={() => this.props.logout()}>Log Out</button>
 
         <h5>Current Requests</h5>
         <table class="u-full-width">

@@ -19,6 +19,7 @@ class App extends React.Component {
     this.deleteRequest = this.deleteRequest.bind(this);
     this.getAvailableServices = this.getAvailableServices.bind(this);
     this.addJob = this.addJob.bind(this);
+    this.logout = this.logout.bind(this);
   }
   /*======================
   page load
@@ -61,6 +62,17 @@ class App extends React.Component {
   }
 
   /*======================
+  logout user
+  ======================*/
+  logout(){
+    this.setState({
+      user: null,
+      userIsVisible: false,
+      frontIsVisible: true
+    })
+  }
+
+  /*======================
   delete a user current requests
   ======================*/
   deleteRequest(request, index){
@@ -76,6 +88,7 @@ class App extends React.Component {
 
     })
   }
+
 
 
   handleCreateJob(job){
@@ -158,6 +171,7 @@ class App extends React.Component {
             toggleState={this.toggleState}
             user={this.state.user}
             deleteRequest={this.deleteRequest}
+            logout={this.logout}
           />
           : ''
         }
