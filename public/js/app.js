@@ -313,6 +313,7 @@ class App extends React.Component {
       })
       .then(data => {
         // console.log(data);
+        this.getAvailableServices();
         this.setState({
           user: data,
           userIsVisible: true,
@@ -424,6 +425,7 @@ class App extends React.Component {
       })
       .then(data => {
         // console.log(data);
+        this.getAvailableServices();
         this.setState({
           user: data,
           userIsVisible: true,
