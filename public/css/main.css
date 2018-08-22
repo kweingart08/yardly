@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  font-family: Helvetica;
+}
+
+
+
+/* ====== FRONT ====== */
+.front-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.front-container p {
+  text-align: center;
+  font-size: 28px;
+}
+
+.front-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.front-buttons button {
+  margin: 10px;
+}
