@@ -11,6 +11,7 @@ class App extends React.Component {
       addServiceIsVisibile: false,
       editServiceIsVisible: false,
       availableServices: [],
+      serviceToEdit: null,
       user: null,
       employee: null
     }
@@ -23,8 +24,19 @@ class App extends React.Component {
     this.setEmployee = this.setEmployee.bind(this);
     this.deleteService = this.deleteService.bind(this);
     this.addNewService = this.addNewService.bind(this);
+    this.updateService = this.updateService.bind(this);
     this.createUser = this.createUser.bind(this);
+    this.editService = this.editService.bind(this);
+  }
 
+  /*======================
+  set the service that was clicked in order to send to edit service
+
+  ======================*/
+  editService(service){
+    this.setState({
+      serviceToEdit: service
+    })
   }
 
   /*======================
@@ -32,7 +44,7 @@ class App extends React.Component {
 
   ======================*/
   createUser(username, password, address){
-  
+
     fetch('/users', {
       body: JSON.stringify({
         "username": username,
@@ -57,8 +69,6 @@ class App extends React.Component {
     this.setUser(username, password);
 
   }
-
-
 
   /*======================
   on page load - get all of the available services
@@ -101,7 +111,8 @@ class App extends React.Component {
         user: data,
         userIsVisible: true,
         loginIsVisible: false,
-        registerIsVisible: false
+        registerIsVisible: false,
+        editServiceIsVisible: false
       })
       if(data.employee_id !==0){
         this.setEmployee(data.employee_id);
@@ -328,9 +339,38 @@ class App extends React.Component {
   /*======================
   update a new service
   ======================*/
-  updateService(){
-    console.log('updating service');
+  updateService(service_type, service_price){
+    event.preventDefault();
+    console.log('service to edit', this.state.serviceToEdit);
+    console.log('service to edit', this.state.employee);
+    //for the put request to update the service
+    fetch('/services/' + this.state.serviceToEdit.service_id, {
+      body: JSON.stringify({
+        "service_type": service_type,
+        "service_price": service_price,
+        "employee_id": this.state.employee.employee_id
+      }),
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(updatedService => {
+      return updatedService.json()
+    })
+    .then(jsonedService => {
+
+
+      //goes to log in page
+
+
+
+    })
+    .catch(error => console.log(error))
   }
+
+
   /*======================
   delete a new service
   ======================*/
@@ -435,6 +475,7 @@ class App extends React.Component {
             updateService={this.updateService}
             deleteService={this.deleteService}
             deleteRequest={this.deleteRequest}
+            editService={this.editService}
           />
           : ''
         }
@@ -453,6 +494,8 @@ class App extends React.Component {
           <EditService
             toggleState={this.toggleState}
             updateService={this.updateService}
+            serviceToEdit={this.state.serviceToEdit}
+            employee={this.state.employee}
           />
           : ''
         }
