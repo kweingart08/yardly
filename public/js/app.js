@@ -340,7 +340,6 @@ class App extends React.Component {
   update a new service
   ======================*/
   updateService(service_type, service_price){
-    event.preventDefault();
     console.log('service to edit', this.state.serviceToEdit);
     console.log('service to edit', this.state.employee);
     //for the put request to update the service
@@ -361,9 +360,36 @@ class App extends React.Component {
     })
     .then(jsonedService => {
 
+      fetch('users/' + this.state.user.username, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        // console.log(data);
+        this.setState({
+          user: data,
+          userIsVisible: true,
+          loginIsVisible: false,
+          addServiceIsVisibile: false,
+          editServiceIsVisible: false
+        })
+        if(data.employee_id !==0){
+          this.setEmployee(data.employee_id);
+        }
+      }).catch(error => console.log(error))
 
-      //goes to log in page
 
+      if(employeeID !==0){
+        this.toggleState('userIsVisible', 'providedServicesIsVisible', 'employeeIsVisible')
+      } else {
+      this.toggleState('userIsVisible', 'providedServicesIsVisible')
+      }
 
 
     })
