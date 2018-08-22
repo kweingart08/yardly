@@ -32,7 +32,7 @@ class App extends React.Component {
 
   ======================*/
   createUser(username, password, address){
-    
+  
     fetch('/users', {
       body: JSON.stringify({
         "username": username,
@@ -55,6 +55,7 @@ class App extends React.Component {
     .catch(error => console.log(error))
 
     this.setUser(username, password);
+
   }
 
 
@@ -83,6 +84,7 @@ class App extends React.Component {
   ======================*/
   setUser(username, password){
     event.preventDefault()
+    console.log(username, password);
     fetch('users/' + username, {
       method: 'GET',
       headers: {
@@ -94,7 +96,7 @@ class App extends React.Component {
       return response.json()
     })
     .then(data => {
-      // console.log(data);
+      console.log(data);
       this.setState({
         user: data,
         userIsVisible: true,

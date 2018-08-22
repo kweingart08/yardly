@@ -6,31 +6,31 @@ class Register extends React.Component {
       password: '',
       address: ''
     }
-    this.handleUsername = this.handleUsername.bind(this);
-    this.handlePassword = this.handlePassword.bind(this);
-    this.handleAddress = this.handleAddress.bind(this);
-    this.createUser = this.createUser.bind(this);
+    this.handleRegisterUsername = this.handleRegisterUsername.bind(this);
+    this.handleRegisterPassword = this.handleRegisterPassword.bind(this);
+    this.handleRegisterAddress = this.handleRegisterAddress.bind(this);
+    this.registerUser = this.registerUser.bind(this);
   }
 
-  handleUsername(){
+  handleRegisterUsername(){
     this.setState({
       username: event.target.value
     })
   }
 
-  handlePassword(){
+  handleRegisterPassword(){
     this.setState({
       password: event.target.value
     })
   }
 
-  handleAddress(){
+  handleRegisterAddress(){
     this.setState({
       address: event.target.value
     })
   }
 
-  createUser(){
+  registerUser(){
     this.props.createUser(this.state.username, this.state.password, this.state.address)
   }
 
@@ -38,7 +38,7 @@ class Register extends React.Component {
     return (
       <div className="register">
 
-      <form onSubmit={this.createUser}>
+      <form onSubmit={this.registerUser}>
         <fieldset>
           <legend>Register</legend>
 
@@ -46,21 +46,21 @@ class Register extends React.Component {
             <input
               type="text"
               id="username"
-              onChange={this.handleUsername}
+              onChange={this.handleRegisterUsername}
             />
 
             <label for="password">Password</label>
             <input
               type="text"
               id="password"
-              onChange={this.handlePassword}
+              onChange={this.handleRegisterPassword}
             />
 
             <label for="address">Address</label>
             <input
               type="text"
               id="address"
-              onChange={this.handleAddress}
+              onChange={this.handleRegisterAddress}
             />
 
             <div className="submit">
