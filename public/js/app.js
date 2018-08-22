@@ -23,7 +23,42 @@ class App extends React.Component {
     this.setEmployee = this.setEmployee.bind(this);
     this.deleteService = this.deleteService.bind(this);
     this.addNewService = this.addNewService.bind(this);
+    this.createUser = this.createUser.bind(this);
+
   }
+
+  /*======================
+  create a user and log in
+
+  ======================*/
+  createUser(username, password, address){
+    
+    fetch('/users', {
+      body: JSON.stringify({
+        "username": username,
+        "password": password,
+        "address": address
+      }),
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(createdUser => {
+      return createdUser.json()
+    })
+    .then(jsonedUser => {
+      // this.handleCreateJob(jsonedJob)
+      console.log("jsoned", jsonedUser);
+    })
+    .catch(error => console.log(error))
+
+    this.setUser(username, password);
+  }
+
+
+
   /*======================
   on page load - get all of the available services
   ======================*/
@@ -63,7 +98,8 @@ class App extends React.Component {
       this.setState({
         user: data,
         userIsVisible: true,
-        loginIsVisible: false
+        loginIsVisible: false,
+        registerIsVisible: false
       })
       if(data.employee_id !==0){
         this.setEmployee(data.employee_id);
@@ -356,6 +392,7 @@ class App extends React.Component {
         {this.state.registerIsVisible ?
           <Register
             toggleState={this.toggleState}
+            createUser={this.createUser}
           />
           : ''
         }
