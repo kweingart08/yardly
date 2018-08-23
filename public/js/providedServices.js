@@ -19,7 +19,6 @@ class ProvidedServices extends React.Component {
       <div className="header">
         <img src="../images/yardly-logo.png" className="small-logo"/>
         <h2>Welcome {this.props.user.username}</h2>
-        <button onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible')} className="logout">Back</button>
       </div>
 
         <h5 className="current">Available Services</h5>
@@ -48,6 +47,9 @@ class ProvidedServices extends React.Component {
             )
           })}
         </div>
+
+      <button className="see-list" onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible')} >Back</button>
+
       </div>
     )
   }

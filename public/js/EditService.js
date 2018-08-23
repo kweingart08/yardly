@@ -31,38 +31,38 @@ class EditService extends React.Component {
     console.log(this.props.serviceToEdit);
     console.log(this.props.employee);
     return (
-      <div className="edit-service">
+      <div className="login-register">
 
-      <form onSubmit={this.changeService}>
-        <fieldset>
-          <legend>Edit Provided Service</legend>
+        <form onSubmit={this.changeService}>
+          <fieldset>
+            <legend>Edit Provided Service</legend>
 
-            <label for="service_type">Service Name</label>
-            <input
-              type="text"
-              id="service_type"
-              value={this.state.service_type}
-              onChange={this.handleTypeChange}
-            />
-
-            <label for="service_price">Price</label>
-            <input
-              type="number"
-              id="service_price"
-              value={this.state.service_price}
-              onChange={this.handlePriceChange}
-            />
-
-            <div className="submit">
+              <label for="service_type">Service Name</label>
               <input
-                className="button"
-                type="submit"
-                value="Submit Edit" />
-            </div>
-        </fieldset>
-      </form>
+                type="text"
+                id="service_type"
+                value={this.state.service_type}
+                onChange={this.handleTypeChange}
+              />
 
-      <button onClick={()=> this.props.toggleState('employeeIsVisible', 'userIsVisible', 'editServiceIsVisible')}>Back</button>
+              <label for="service_price">Price</label>
+              <input
+                type="number"
+                id="service_price"
+                value={this.state.service_price}
+                onChange={this.handlePriceChange}
+              />
+
+              <div className="submit">
+                <input
+                  className="button"
+                  type="submit"
+                  value="Submit Edit" />
+              </div>
+          </fieldset>
+        </form>
+
+        <button onClick={()=> this.props.toggleState('employeeIsVisible', 'userIsVisible', 'editServiceIsVisible')}>Back</button>
 
       </div>
     )
