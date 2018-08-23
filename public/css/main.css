@@ -7,7 +7,7 @@ body, html {
 .container {
   display: flex;
   flex-direction: column;
-  font-family: Helvetica;
+  font-family: 'Montserrat', sans-serif;
   min-width: 100%;
 }
 
@@ -62,3 +62,88 @@ body, html {
 .front-buttons button:hover {
   color: #17db26;
 }
+
+
+/* ====== Log in and Register Form Pages ====== */
+.login-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("../images/blur-blurred-eco-9257.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  color: white;
+}
+
+form {
+  text-align: center;
+  margin-top: 50px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 28px;
+  min-width: 400px;
+}
+
+fieldset {
+  border: 2px solid white;
+  margin: auto;
+  width: 100%;
+  border-radius: 15px;
+}
+
+input {
+  margin: 0;
+  width: 80%;
+}
+
+input[type="submit"] {
+  margin: 25px;
+  color: white;
+  font-size: 18px;
+  width: 80%;
+  height: auto;
+  border: 1px solid white;
+}
+
+input[type="submit"]:hover {
+  color: #17db26;
+  border: 1px solid #bbb;
+}
+
+.login-register button {
+  margin: 25px;
+  color: white;
+  font-size: 18px;
+  width: 200px;
+  height: auto;
+  border: 1px solid white;
+}
+
+.login-register button:hover {
+  color: #17db26;
+  border: 1px solid #bbb;
+}
+
+label {
+  font-size: 20px;
+}
+
+
+/* ====== User and Employee Pages (use grid) ====== */
+
+
+
+
+
+
+/* ====== Provided Services (use grid) ====== */
+
+
+
+
+/* ====== Edit Service ====== */
+
+
+/* ====== Add Service ====== */
