@@ -28,7 +28,7 @@ class Login extends React.Component {
 
   render(){
     return (
-      <div className="login">
+      <div className="login-register">
         <form onSubmit={this.getUser}>
           <fieldset>
             <legend>Log In</legend>
@@ -55,6 +55,8 @@ class Login extends React.Component {
               </div>
           </fieldset>
         </form>
+
+        <button onClick={()=> this.props.toggleState('loginIsVisible', 'frontIsVisible')}>Back</button>
 
       </div>
     )
