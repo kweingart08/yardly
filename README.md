@@ -22,3 +22,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+![ERD](https://github.com/kweingart08/yardly/blob/master/ERD.png?raw=true)
