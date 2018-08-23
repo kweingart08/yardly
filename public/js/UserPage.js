@@ -7,8 +7,12 @@ class UserPage extends React.Component {
     console.log(this.props.user);
     return (
       <div className="user">
-        <h2>Welcome {this.props.user.username}</h2>
-        <button onClick={() => this.props.logout()}>Log Out</button>
+
+        <div className="header">
+          <img src="../images/yardly-logo.png" className="small-logo"/>
+          <h2>Welcome {this.props.user.username}</h2>
+          <button onClick={() => this.props.logout()}>Log Out</button>
+        </div>
 
         <h5>Current Requests</h5>
 

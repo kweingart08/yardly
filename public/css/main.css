@@ -131,11 +131,44 @@ input {
 }
 
 /* ====== User and Employee Pages (use grid) ====== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid green;
+}
 
+.small-logo {
+  max-height: 100px;
+}
 
+.header h2 {
+  margin: 0;
+}
 
+.requests {
+  display: grid;
+  grid-template-columns: 22% 22% 22% 22%;
+  grid-template-rows: auto;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  box-sizing: border-box;
+  grid-template-areas: "request request request request";
+  margin: 20px;
+  justify-content: center;
+}
 
+.request {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  border: 1px solid black;
+}
 
+.delete {
+  align-self: flex-end;
+}
 
 /* ====== Provided Services (use grid) ====== */
 
