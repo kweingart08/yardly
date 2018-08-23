@@ -7,16 +7,19 @@ body, html {
 .container {
   display: flex;
   flex-direction: column;
-  font-family: Helvetica;
+  font-family: 'Montserrat', sans-serif;
   min-width: 100%;
+  height: 100vh;
 }
 
 .main {
   min-width: 100%;
+  height: 100%;
 }
 
 .app {
   min-width: 100%;
+  height: 100%;
 }
 
 
@@ -62,3 +65,233 @@ body, html {
 .front-buttons button:hover {
   color: #17db26;
 }
+
+
+/* ====== Log in and Register Form Pages ====== */
+.login-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("../images/blur-blurred-eco-9257.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  color: white;
+}
+
+form {
+  text-align: center;
+  margin-top: 50px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 28px;
+  min-width: 400px;
+}
+
+fieldset {
+  border: 2px solid white;
+  margin: auto;
+  width: 100%;
+  border-radius: 15px;
+}
+
+input {
+  margin: 0;
+  min-width: 80%;
+}
+
+input[type="submit"] {
+  margin: 25px;
+  color: white;
+  font-size: 18px;
+  min-width: 80%;
+  height: auto;
+  border: 1px solid white;
+}
+
+input[type="submit"]:hover {
+  color: #17db26;
+  border: 1px solid #bbb;
+}
+
+.login-register button {
+  margin: 25px;
+  color: white;
+  font-size: 18px;
+  width: 200px;
+  height: auto;
+  border: 1px solid white;
+}
+
+.login-register button:hover {
+  color: #17db26;
+  border: 1px solid #bbb;
+}
+
+input {
+  font-size: 20px;
+}
+
+/* ====== User and Employee Pages (use grid) ====== */
+.user {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../images/architecture-clouds-estate-280222.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #6ead3a;
+  background: #efedef;
+  width: 100%;
+}
+
+.small-logo {
+  max-height: 100px;
+  margin-left: 10px;
+}
+
+.logout {
+  margin-right: 10px;
+}
+
+.header h2 {
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+
+.current {
+  text-align: center;
+  padding: 20px 0;
+  background: #222022;
+  color: #6ead3a;
+  font-size: 32px;
+  width: 100%;
+  margin: 0;
+}
+
+.requests {
+  display: grid;
+  grid-template-columns: 22% 22% 22% 22%;
+  grid-template-rows: auto;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  box-sizing: border-box;
+  grid-template-areas: "request request request request";
+  margin: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.request {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid #6ead3a;
+  border-radius: 5px;
+  background: white;
+}
+
+.delete {
+  align-self: flex-end;
+  padding: 5px;
+  font-size: 28px;
+}
+
+i.far.fa-trash-alt:hover {
+  color: red;
+}
+
+.service-type {
+  background: #4c4947;
+  color: whitesmoke;
+  padding: 5px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.service-type h4 {
+  margin: 0;
+}
+
+.worker-name {
+  padding: 5px;
+  font-size: 18px;
+}
+
+.worker-name span {
+  margin-left: 10px;
+
+}
+
+.see-list {
+    margin: 20px;
+    width: 20%;
+    color: #4c4947;
+    font-size: 18px;
+    align-self: center;
+    border: 1px solid white;
+    background: #ceccce;
+}
+
+.see-list:hover {
+  color: #17db26;
+  border: 1px solid #bbb;
+}
+
+.employee {
+  background: #efedef;
+  display: flex;
+  flex-direction: column;
+}
+
+#add-service-employee {
+  background: #6ead3a;
+  color: #efedef;
+}
+
+/* ====== Provided Services (use grid) ====== */
+.provided-services {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../images/beautiful-bloom-blooming-414160.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.available-service {
+  display: flex;
+  justify-content: space-between;
+}
+
+.service-price {
+  color: #17db26;
+}
+
+.add:hover {
+  color: #17db26;
+}
+
+i.far.fa-trash-alt {
+  margin-left: 20px;
+}
+
+i.far.fa-edit:hover {
+  color: blue;
+}
+
+/* ====== Edit Service ====== */
+
+
+/* ====== Add Service ====== */

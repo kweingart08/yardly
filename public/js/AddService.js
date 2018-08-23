@@ -34,7 +34,7 @@ class AddService extends React.Component {
     // console.log(this.props.user);
     // console.log(this.props.employee);
     return (
-      <div className="add-service">
+      <div className="login-register">
 
       <form onSubmit={this.addService}>
         <fieldset>
