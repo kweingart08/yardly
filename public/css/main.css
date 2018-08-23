@@ -1,0 +1,64 @@
+body, html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  font-family: Helvetica;
+  min-width: 100%;
+}
+
+.main {
+  min-width: 100%;
+}
+
+.app {
+  min-width: 100%;
+}
+
+
+/* ====== FRONT ====== */
+.front-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    background-image: url("../images/blur-blurred-eco-9257.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: white;
+}
+
+.logo-container {
+  background: white;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.front-container p {
+  text-align: center;
+  font-size: 32px;
+}
+
+.front-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.front-buttons button {
+  margin: 10px;
+  color: white;
+  font-size: 30px;
+  padding: 20px 30px;
+  width: auto;
+  height: auto;
+  border: 1px solid white;
+}
+
+.front-buttons button:hover {
+  color: #17db26;
+}
