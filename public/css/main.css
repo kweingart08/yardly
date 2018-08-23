@@ -242,9 +242,29 @@ i.far.fa-trash-alt:hover {
 }
 
 /* ====== Provided Services (use grid) ====== */
+.provided-services {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../images/beautiful-bloom-blooming-414160.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+}
 
+.available-service {
+  display: flex;
+  justify-content: space-between;
+}
 
+.service-price {
+  color: #17db26;
+}
 
+.add:hover {
+  color: #17db26;
+}
 
 /* ====== Edit Service ====== */
 

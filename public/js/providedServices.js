@@ -16,34 +16,38 @@ class ProvidedServices extends React.Component {
     return (
       <div className="provided-services">
 
-        <h5>Available Services</h5>
-        <table class="u-full-width">
-          <thead>
-            <tr>
-              <th>Service</th>
-              <th>Price</th>
-              <th>Employee</th>
-              <th>Add</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.availableServices.map((service, index) => {
-              return (
-              <tr>
-                <td>{service.service_type}</td>
-                <td>{service.service_price}</td>
-                <td>{service.username}</td>
-                <td><i class="fas fa-plus"
+      <div className="header">
+        <img src="../images/yardly-logo.png" className="small-logo"/>
+        <h2>Welcome {this.props.user.username}</h2>
+        <button onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible')} className="logout">Back</button>
+      </div>
+
+        <h5 className="current">Available Services</h5>
+
+        <div className="requests">
+
+          {this.props.availableServices.map((service, index) => {
+            return (
+              <div className="request">
+                <div className="service-type available-service">
+                  <h4>{service.service_type}</h4>
+                  <h4 className="service-price">${service.service_price}</h4>
+                </div>
+
+                <div className="worker-name">
+                  <h5>Worker: <span>{service.username}</span> </h5>
+                </div>
+
+
+                <div className="delete">
+                <i class="fas fa-plus add"
                 onClick={ () => this.handleAddRequest(service.id)}
-                ></i></td>
-              </tr>
+                ></i>
+                </div>
+              </div>
             )
-            })}
-          </tbody>
-        </table>
-
-        <button onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible')} >Back</button>
-
+          })}
+        </div>
       </div>
     )
   }
