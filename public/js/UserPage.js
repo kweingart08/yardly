@@ -11,7 +11,7 @@ class UserPage extends React.Component {
         <div className="header">
           <img src="../images/yardly-logo.png" className="small-logo"/>
           <h2>Welcome {this.props.user.username}</h2>
-          <button onClick={() => this.props.logout()}>Log Out</button>
+          <button onClick={() => this.props.logout()} className="logout">Log Out</button>
         </div>
 
         <h5 className="current">Current Requests</h5>
@@ -42,7 +42,7 @@ class UserPage extends React.Component {
 
           <button
             onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible')}
-          >See List of Services</button>
+          className="see-list">See List of Services</button>
 
       </div>
     )

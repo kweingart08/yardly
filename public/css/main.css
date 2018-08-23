@@ -139,6 +139,7 @@ input {
   background-position: center;
   height: 100vh;
   width: 100%;
+  align-items: center;
 }
 
 .header {
@@ -146,13 +147,17 @@ input {
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #6ead3a;
-  padding: 10px;
   background: #efedef;
   width: 100%;
 }
 
 .small-logo {
   max-height: 100px;
+  margin-left: 10px;
+}
+
+.logout {
+  margin-right: 10px;
 }
 
 .header h2 {
@@ -161,7 +166,7 @@ input {
 
 .current {
   text-align: center;
-  padding: 2rem;
+  padding: 20px 0;
   background: #222022;
   color: #6ead3a;
   font-size: 32px;
@@ -221,13 +226,18 @@ i.far.fa-trash-alt:hover {
 
 }
 
-.user button {
+.see-list {
     margin: 20px;
     width: 20%;
     color: white;
     font-size: 18px;
     align-self: center;
     border: 1px solid white;
+}
+
+.see-list:hover {
+  color: #17db26;
+  border: 1px solid #bbb;
 }
 
 /* ====== Provided Services (use grid) ====== */
