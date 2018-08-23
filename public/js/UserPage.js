@@ -3,10 +3,6 @@ class UserPage extends React.Component {
     super(props)
   }
 
-  // componentDidMount(){
-  //   console.log('mounted');
-  // }
-
   render(){
     console.log(this.props.user);
     return (
@@ -15,34 +11,34 @@ class UserPage extends React.Component {
         <button onClick={() => this.props.logout()}>Log Out</button>
 
         <h5>Current Requests</h5>
-        <table class="u-full-width">
-          <thead>
-            <tr>
-              <th>Service</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.user.open_requests.map( (request, index) => {
-              return (
-                <tr>
-                  <td>{request.service_type}</td>
-                  <td>
-                    <i class="far fa-trash-alt"
-                    onClick={ () => this.props.deleteRequest(request, index)}
-                    >
-                    </i>
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+
+        <div className="requests">
+
+          {this.props.user.open_requests.map( (request, index) => {
+            return (
+              <div className="request">
+                <div className="service-type">
+                  {request.service_type}
+                </div>
+
+                <div className="worker-name">
+                  {request.workers_name}
+                </div>
+
+                <div className="delete">
+                  <i class="far fa-trash-alt"
+                  onClick={ () => this.props.deleteRequest(request, index)}
+                  >
+                  </i>
+                </div>
+              </div>
+            )
+          })}
+        </div>
 
           <button
             onClick={ () => this.props.toggleState('providedServicesIsVisible', 'userIsVisible')}
           >See List of Services</button>
-
 
       </div>
     )

@@ -126,10 +126,9 @@ input[type="submit"]:hover {
   border: 1px solid #bbb;
 }
 
-label {
+input {
   font-size: 20px;
 }
-
 
 /* ====== User and Employee Pages (use grid) ====== */
 
