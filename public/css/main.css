@@ -220,10 +220,14 @@ i.far.fa-trash-alt:hover {
 
 .service-type h4 {
   margin: 0;
+  font-size: 22px;
 }
 
 .worker-name {
   padding: 5px;
+}
+
+.worker-name h5 {
   font-size: 18px;
 }
 
@@ -234,7 +238,7 @@ i.far.fa-trash-alt:hover {
 
 .see-list {
     margin: 20px;
-    width: 20%;
+    width: auto;
     color: #4c4947;
     font-size: 18px;
     align-self: center;
