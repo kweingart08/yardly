@@ -3,7 +3,7 @@ class Front extends React.Component {
     return (
       <div className="front-container">
         <div className="logo-container">
-          <img src="../images/yardly-logo.png"/>
+          <img src="../images/yardly-logo.png" id="front-logo"/>
         </div>
         <p>Are you working hard or YARDLY working!</p>
         <p>All of your yard work needs done by someone else</p>

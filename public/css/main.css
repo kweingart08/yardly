@@ -36,6 +36,10 @@ body, html {
     color: white;
 }
 
+#front-logo {
+  height: 200px;
+}
+
 .logo-container {
   background: white;
   text-align: center;
@@ -44,7 +48,7 @@ body, html {
 
 .front-container p {
   text-align: center;
-  font-size: 32px;
+  font-size: 24px;
 }
 
 .front-buttons {
@@ -55,8 +59,8 @@ body, html {
 .front-buttons button {
   margin: 10px;
   color: white;
-  font-size: 30px;
-  padding: 20px 30px;
+  font-size: 24px;
+  padding: 10px 30px;
   width: auto;
   height: auto;
   border: 1px solid white;
