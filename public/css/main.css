@@ -131,11 +131,24 @@ input {
 }
 
 /* ====== User and Employee Pages (use grid) ====== */
+.user {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../images/architecture-clouds-estate-280222.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid green;
+  border-bottom: 2px solid #6ead3a;
+  padding: 10px;
+  background: #efedef;
+  width: 100%;
 }
 
 .small-logo {
@@ -144,6 +157,15 @@ input {
 
 .header h2 {
   margin: 0;
+}
+
+.current {
+  text-align: center;
+  padding: 2rem;
+  background: #222022;
+  color: #6ead3a;
+  font-size: 32px;
+  width: 100%;
 }
 
 .requests {
@@ -156,18 +178,56 @@ input {
   grid-template-areas: "request request request request";
   margin: 20px;
   justify-content: center;
+  width: 100%;
 }
 
 .request {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 15px;
-  border: 1px solid black;
+  border: 2px solid #6ead3a;
+  border-radius: 5px;
+  background: white;
 }
 
 .delete {
   align-self: flex-end;
+  padding: 5px;
+  font-size: 28px;
+}
+
+i.far.fa-trash-alt:hover {
+  color: red;
+}
+
+.service-type {
+  background: #4c4947;
+  color: whitesmoke;
+  padding: 5px;
+  font-size: 22px;
+}
+
+.service-type h4 {
+  margin: 0;
+}
+
+.worker-name {
+  padding: 5px;
+  font-size: 18px;
+}
+
+.worker-name span {
+  margin-left: 10px;
+
+}
+
+.user button {
+    margin: 20px;
+    width: 20%;
+    color: white;
+    font-size: 18px;
+    align-self: center;
+    border: 1px solid white;
 }
 
 /* ====== Provided Services (use grid) ====== */

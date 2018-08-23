@@ -14,7 +14,7 @@ class UserPage extends React.Component {
           <button onClick={() => this.props.logout()}>Log Out</button>
         </div>
 
-        <h5>Current Requests</h5>
+        <h5 className="current">Current Requests</h5>
 
         <div className="requests">
 
@@ -22,11 +22,11 @@ class UserPage extends React.Component {
             return (
               <div className="request">
                 <div className="service-type">
-                  {request.service_type}
+                  <h4>{request.service_type}</h4>
                 </div>
 
                 <div className="worker-name">
-                  {request.workers_name}
+                  <h5>Worker: <span>{request.workers_name}</span> </h5>
                 </div>
 
                 <div className="delete">
