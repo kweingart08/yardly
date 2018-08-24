@@ -35,6 +35,10 @@ class ProvidedServices extends React.Component {
 
                 <div className="worker-name">
                   <h5>Worker: <span>{service.username}</span> </h5>
+                  <div className="reviews">
+                  <h5> <i class="fas fa-star"></i> Rating: <span>4</span></h5>
+
+                  </div>
                 </div>
 
 
