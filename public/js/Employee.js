@@ -54,7 +54,7 @@ class Employee extends React.Component {
           })}
         </div>
 
-        <button className="see-list" id="add-service-employee" onClick={()=> this.props.toggleState('employeeIsVisible', 'userIsVisible', 'addServiceIsVisibile')}>Add More Offered Services</button>
+        <button className="see-list" onClick={()=> this.props.toggleState('employeeIsVisible', 'userIsVisible', 'addServiceIsVisibile')}>Add More Offered Services</button>
 
       </div>
     )

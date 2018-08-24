@@ -153,8 +153,8 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #6ead3a;
-  background: #efedef;
+  border-bottom: 2px solid #009e0c;
+  background: white;
   width: 100%;
 }
 
@@ -176,7 +176,7 @@ input {
   text-align: center;
   padding: 20px 0;
   background: #222022;
-  color: #6ead3a;
+  color: #009e0c;
   font-size: 32px;
   width: 100%;
   margin: 0;
@@ -196,12 +196,16 @@ input {
 }
 
 .request {
+  background: rgba(248,248,248);
+  padding: 15px;
+  box-shadow: 2px 1px 8px rgba(0,0,0);
+  height: 250px;
+  width: 90%;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   justify-content: space-between;
-  border: 2px solid #6ead3a;
-  border-radius: 5px;
-  background: white;
 }
 
 .delete {
@@ -215,8 +219,6 @@ i.far.fa-trash-alt:hover {
 }
 
 .service-type {
-  background: #4c4947;
-  color: whitesmoke;
   padding: 5px;
   font-size: 22px;
   text-align: center;
@@ -224,7 +226,9 @@ i.far.fa-trash-alt:hover {
 
 .service-type h4 {
   margin: 0;
-  font-size: 22px;
+  font-size: 26px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
 }
 
 .worker-name {
@@ -241,18 +245,16 @@ i.far.fa-trash-alt:hover {
 }
 
 .see-list {
-    margin: 20px;
-    width: auto;
-    color: #4c4947;
-    font-size: 18px;
-    align-self: center;
-    border: 1px solid white;
-    background: #ceccce;
+  margin: 20px;
+  width: auto;
+  color: white;
+  font-size: 18px;
+  align-self: center;
+  background: #2ee0f5;
 }
 
 .see-list:hover {
-  color: #17db26;
-  border: 1px solid #bbb;
+  background: rgba(46,244,245,0.85);
 }
 
 .employee {
@@ -261,10 +263,6 @@ i.far.fa-trash-alt:hover {
   flex-direction: column;
 }
 
-#add-service-employee {
-  background: #6ead3a;
-  color: #efedef;
-}
 
 /* ====== Provided Services (use grid) ====== */
 .provided-services {
@@ -281,6 +279,8 @@ i.far.fa-trash-alt:hover {
 .available-service {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  flex-direction: column;
 }
 
 .service-price {
